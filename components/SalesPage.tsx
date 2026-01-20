@@ -115,7 +115,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
     {
       img: "https://i.imgur.com/ipOh27y.jpg",
       name: "Fernanda O.",
-      text: "Eu sempre comia quando estava ansiosa. O Método me ensinou a controlar isso. 4kg a menos em 3 semanas!"
+      text: "Eu sempre comia quando estava ansiosa. O Método MENTE MAGRA me ensinou a controlar isso. 4kg a menos em 3 semanas!"
     },
     {
       img: "https://i.imgur.com/AJCfcXk.jpg",
@@ -436,7 +436,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
               price: "R$ 67" 
             },
             { 
-              title: "BÔNUS 3: Método Antiansiedade Alimentar", 
+              title: "BÔNUS 3: Método MENTE MAGRA Antiansiedade Alimentar", 
               desc: "Reduza compulsões, estresse e gatilhos emocionais em apenas 15 minutos por dia.",
               price: "R$ 87" 
             },

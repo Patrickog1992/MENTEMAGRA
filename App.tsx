@@ -72,7 +72,7 @@ const App: React.FC = () => {
       {/* Footer for trust (Hidden on sales page to remove distraction) */}
       {isQuizMode && (
         <footer className="mt-12 text-center text-gray-400 text-xs pb-6">
-          <p>© 2024 Método MENTE MAGRA. Todos os direitos reservados.</p>
+          <p>© 2026 Método MENTE MAGRA. Todos os direitos reservados.</p>
         </footer>
       )}
     </div>

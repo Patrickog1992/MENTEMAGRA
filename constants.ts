@@ -1,4 +1,3 @@
-
 import { QuizStep } from './types';
 
 export const QUIZ_STEPS: QuizStep[] = [
@@ -6,7 +5,7 @@ export const QUIZ_STEPS: QuizStep[] = [
     id: 1,
     type: 'intro',
     title: 'Você vai perder peso em casa com a auto-hipnose!',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fi.imgur.com%2FSL6CGop.jpeg&w=640&q=75',
+    image: 'https://i.imgur.com/SL6CGop.jpeg',
     subtitle: 'Faça esse quiz de 1 minuto e vamos te ajudar agora a resolver seus desafios com o peso e a alimentação.',
     buttonText: 'Continuar'
   },
@@ -35,8 +34,8 @@ export const QUIZ_STEPS: QuizStep[] = [
   {
     id: 4,
     type: 'info',
-    title: 'Mais de 500.000 pessoas escolheram o Método',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fhypnozio.com%2Fhypnozio%2Fquiz%2Fpeople-circle.png&w=256&q=75',
+    title: 'Mais de 500.000 pessoas escolheram o Método MENTE MAGRA',
+    image: 'https://hypnozio.com/hypnozio/quiz/people-circle.png',
     buttonText: 'Continuar'
   },
   {
@@ -70,7 +69,7 @@ export const QUIZ_STEPS: QuizStep[] = [
     type: 'info',
     title: 'A conexão mente-corpo',
     subtitle: 'A maioria das dietas e treinos falham a longo prazo não por falta de esforço, mas porque ignoram a verdadeira causa: a conexão mente-corpo. A hipnoterapia funciona mudando sua mentalidade, desbloqueando a motivação, clareza e controle necessários para criar mudanças reais e duradouras.',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fhypnozio.com%2Fhypnozio%2Fquiz%2Ffemale-with-headphones-2.jpg&w=640&q=75',
+    image: 'https://hypnozio.com/hypnozio/quiz/female-with-headphones-2.jpg',
     buttonText: 'Continuar'
   },
   {
@@ -91,8 +90,8 @@ export const QUIZ_STEPS: QuizStep[] = [
   {
     id: 9,
     type: 'info',
-    title: 'Veja o antes e depois da Jéssica com o Método',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fi.imgur.com%2FSMrGKnM.png&w=640&q=75',
+    title: 'Veja o antes e depois da Jéssica com o Método MENTE MAGRA',
+    image: 'https://i.imgur.com/SMrGKnM.png',
     subtitle: '"Eu não acreditava que a hipnose poderia me ajudar a emagrecer, mas o Método MENTE MAGRA mudou completamente minha perspectiva. Perdi 18kg sem sofrimento e, o mais importante, aprendi a ter uma relação saudável com a comida. Minha autoestima nunca esteve tão alta!"',
     buttonText: 'Continuar'
   },
@@ -144,7 +143,7 @@ export const QUIZ_STEPS: QuizStep[] = [
     type: 'info',
     title: 'O Método MENTE MAGRA',
     subtitle: 'O Método MENTE MAGRA ajuda a gerenciar sua relação com a comida “corrigindo” a falha de comunicação entre seu cérebro e seu estômago. Vamos começar aprendendo mais sobre você para avaliar se o Método MENTE MAGRA também pode te ajudar.',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fhypnozio.com%2Fhypnozio%2Fquiz%2Fbrain-and-stomach2.jpg&w=640&q=75',
+    image: 'https://hypnozio.com/hypnozio/quiz/brain-and-stomach2.jpg',
     buttonText: 'Continuar'
   },
   {
@@ -183,7 +182,7 @@ export const QUIZ_STEPS: QuizStep[] = [
     type: 'info',
     title: 'Conexão Cérebro-Intestino',
     subtitle: 'O ganho de peso vai além da força de vontade. Para muitos, o verdadeiro problema é a desconexão entre o cérebro e o corpo - uma falha de comunicação que confunde fome, desejos e saciedade. Essa falha de comunicação entre estômago e cérebro é um fator importante no excesso de peso. Entender e curar essa conexão é fundamental para uma perda de peso duradoura e para melhorias físicas e mentais. Se você já sentiu “frio na barriga” ao ficar nervoso, então já percebeu os efeitos dessa conexão.',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fhypnozio.com%2Fhypnozio%2Fquiz%2Fbrain-and-guts.jpg&w=640&q=75',
+    image: 'https://hypnozio.com/hypnozio/quiz/brain-and-guts.jpg',
     buttonText: 'Continuar'
   },
   {
@@ -257,7 +256,7 @@ export const QUIZ_STEPS: QuizStep[] = [
     type: 'info',
     title: 'O Hipnoterapia pode te ajudar a controlar seu peso em apenas 15 minutos por dia.',
     subtitle: 'Você receberá um programa personalizado de hipnoterapia, criado por nossa equipe de hipnoterapeutas experientes, projetado para melhorar sua relação com a comida e te ajudar a alcançar seu peso desejado. A melhor parte? Não há necessidade de medidas drásticas, como terapia presencial ou grupos de apoio, se você não estiver pronto. Basta relaxar e aproveitar suas sessões em casa.',
-    image: 'https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fi.imgur.com%2F52gwXD4.png&w=256&q=75',
+    image: 'https://i.imgur.com/52gwXD4.png',
     buttonText: 'Continuar'
   },
   {

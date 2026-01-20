@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { QuizStep as QuizStepType, UserData } from '../types';
 import { ArrowRight, CheckCircle, AlertTriangle } from 'lucide-react';
@@ -120,7 +119,7 @@ const QuizStep: React.FC<Props> = ({ step, userData, onUpdate, onNext }) => {
            </div>
 
            <div className="flex flex-col items-center gap-2 mt-4 bg-white p-6 rounded-2xl shadow-md border border-gray-100 w-full">
-             <img src="https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fi.imgur.com%2F52gwXD4.png&w=256&q=75" alt="Suelen Costa" className="w-20 h-20 rounded-full border-4 border-violet-500" />
+             <img src="https://i.imgur.com/52gwXD4.png" alt="Suelen Costa" className="w-20 h-20 rounded-full border-4 border-violet-500" />
              <p className="font-bold text-lg">Suelen Costa</p>
              <p className="text-violet-600 font-bold text-sm">Chefe do Programa</p>
              <div className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-xs font-bold border border-green-200 mt-2">

@@ -144,9 +144,9 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
         </p>
       </div>
 
-      {/* --- POPUP NOTIFICATION - Smaller size --- */}
+      {/* --- POPUP NOTIFICATION - Smaller size but slightly wider for full name --- */}
       <div 
-        className={`fixed top-14 right-2 z-[50] bg-white rounded-lg shadow-xl p-2 flex items-center gap-2 border-l-2 border-green-500 transition-all duration-500 transform max-w-[180px] ${
+        className={`fixed top-14 right-2 z-[50] bg-white rounded-lg shadow-xl p-2 flex items-center gap-2 border-l-2 border-green-500 transition-all duration-500 transform w-auto max-w-[240px] ${
           showNotification ? 'translate-x-0 opacity-100' : 'translate-x-[200%] opacity-0'
         }`}
       >
@@ -155,7 +155,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
         </div>
         <div>
           <p className="text-[10px] font-bold text-gray-800 leading-tight">{notificationName}</p>
-          <p className="text-[9px] text-gray-500 font-medium leading-none mt-0.5">recebeu o MÉTODO</p>
+          <p className="text-[9px] text-gray-500 font-medium leading-none mt-0.5">recebeu o Método MENTE MAGRA</p>
         </div>
       </div>
 
@@ -170,7 +170,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
            {/* BEFORE CARD */}
            <div className="space-y-2 md:space-y-4">
              <div className="relative rounded-2xl overflow-hidden shadow-lg group">
-                <img src="https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fi.imgur.com%2F2vjQaB0.jpeg&w=384&q=75" className="w-full h-40 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" alt="Antes" />
+                <img src="https://i.imgur.com/2vjQaB0.jpeg" className="w-full h-40 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" alt="Antes" />
                 <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-red-600 text-white px-2 py-0.5 md:px-4 md:py-1 font-bold rounded-md text-[10px] md:text-sm shadow-lg uppercase tracking-wider">AGORA</div>
              </div>
              <ul className="space-y-1.5 md:space-y-3 bg-red-50 p-3 md:p-6 rounded-xl md:rounded-2xl border border-red-100 text-[10px] md:text-base">
@@ -183,7 +183,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
            {/* AFTER CARD */}
            <div className="space-y-2 md:space-y-4">
              <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 md:border-4 border-green-400 group">
-                <img src="https://bemestarfit.netlify.app/_next/image?url=https%3A%2F%2Fi.imgur.com%2FTYvuBmJ.jpeg&w=384&q=75" className="w-full h-40 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" alt="Depois" />
+                <img src="https://i.imgur.com/TYvuBmJ.jpeg" className="w-full h-40 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110" alt="Depois" />
                 <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-green-600 text-white px-2 py-0.5 md:px-4 md:py-1 font-bold rounded-md text-[10px] md:text-sm shadow-lg uppercase tracking-wider">DEPOIS</div>
              </div>
              <ul className="space-y-1.5 md:space-y-3 bg-green-50 p-3 md:p-6 rounded-xl md:rounded-2xl border border-green-100 text-[10px] md:text-base">
@@ -196,7 +196,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
 
         <div className="bg-violet-50 p-4 md:p-6 rounded-2xl border-l-4 md:border-l-8 border-violet-600 shadow-md mx-4 md:mx-0">
           <p className="text-center font-bold text-violet-800 text-sm md:text-lg">
-            94% das pessoas com perfis semelhantes ao seu percebem resultados em apenas 2 semanas com o Método
+            94% das pessoas com perfis semelhantes ao seu percebem resultados em apenas 2 semanas com o Método MENTE MAGRA
           </p>
         </div>
       </section>
@@ -467,7 +467,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
 
         <div className="text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-3xl border border-yellow-200 shadow-md">
           <p className="text-gray-500 text-base md:text-lg font-medium">💰 Valor total dos bônus: <span className="line-through decoration-red-500 decoration-2">R$ 475</span></p>
-          <p className="text-green-600 font-black text-xl md:text-3xl mt-2 tracking-tight uppercase">LEVANDO O MÉTODO MENTE HOJE : TOTALMENTE GRATUITO</p>
+          <p className="text-green-600 font-black text-xl md:text-3xl mt-2 tracking-tight uppercase">LEVANDO O MÉTODO MENTE MAGRA HOJE : TOTALMENTE GRATUITO</p>
         </div>
       </section>
 
@@ -574,7 +574,7 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
             { q: "Como acesso o material?", a: "O acesso é enviado imediatamente para o seu e-mail após a confirmação do pagamento." },
             { q: "Preciso de equipamentos?", a: "Não, você só precisa do seu celular ou computador e fones de ouvido." },
             { q: "E se eu não gostar?", a: "Você tem 30 dias de garantia incondicional. Devolvemos seu dinheiro." },
-            { q: "Serve para qualquer idade?", a: "Sim, o método é seguro e adaptável para adultos de todas as idades." },
+            { q: "Serve para qualquer idade?", a: "Sim, o Método MENTE MAGRA é seguro e adaptável para adultos de todas as idades." },
             { q: "Quanto tempo por dia preciso?", a: "Apenas 15 minutos por dia são suficientes para começar a ver resultados." }
           ].map((item, i) => (
             <div key={i} className="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">

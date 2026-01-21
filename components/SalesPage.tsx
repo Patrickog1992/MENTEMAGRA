@@ -82,33 +82,52 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
   const symptom = userData.physicalDiffs?.[0] ? getOptionLabel(11, userData.physicalDiffs[0]) : 'Fadiga e cansaço constante';
   const time = userData.timeDedication ? getOptionLabel(22, userData.timeDedication) : '15-30 minutos';
 
-  // --- Auto-scroll for testimonials ---
+  // --- Auto-scroll for testimonials (Improved for Mobile) ---
   useEffect(() => {
     const scrollContainer = carouselRef.current;
     if (!scrollContainer) return;
 
-    let scrollAmount = 0;
-    const scrollStep = 1; 
-    const delay = 20; 
     let scrollInterval: any;
+    const speed = 1; // Pixels to scroll
+    const intervalTime = 30; // Milliseconds
 
     const startScrolling = () => {
+      clearInterval(scrollInterval);
       scrollInterval = setInterval(() => {
         if (scrollContainer) {
-          scrollContainer.scrollLeft += scrollStep;
-          scrollAmount += scrollStep;
-          
-          if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth - scrollContainer.clientWidth - 10)) {
+          // Check if we are near the end to loop back seamlessly
+          // We use a small threshold (2px) to be safe
+          if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth - scrollContainer.clientWidth - 2)) {
              scrollContainer.scrollLeft = 0;
-             scrollAmount = 0;
+          } else {
+             scrollContainer.scrollLeft += speed;
           }
         }
-      }, delay);
+      }, intervalTime);
     };
 
+    const stopScrolling = () => {
+      clearInterval(scrollInterval);
+    };
+
+    // Start initially
     startScrolling();
 
-    return () => clearInterval(scrollInterval);
+    // Event listeners to pause on interaction
+    scrollContainer.addEventListener('mouseenter', stopScrolling);
+    scrollContainer.addEventListener('mouseleave', startScrolling);
+    scrollContainer.addEventListener('touchstart', stopScrolling, { passive: true });
+    scrollContainer.addEventListener('touchend', () => setTimeout(startScrolling, 1000)); // Delay resume slightly after touch
+
+    return () => {
+      clearInterval(scrollInterval);
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('mouseenter', stopScrolling);
+        scrollContainer.removeEventListener('mouseleave', startScrolling);
+        scrollContainer.removeEventListener('touchstart', stopScrolling);
+        scrollContainer.removeEventListener('touchend', startScrolling);
+      }
+    };
   }, []);
 
   const detailedTestimonials = [
@@ -497,9 +516,12 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
                 <p className="text-gray-600 text-base md:text-lg max-w-lg mx-auto">Transforme sua relação com a comida, ative sua Mente Magra e comece a emagrecer ainda hoje.</p>
                 
                 {/* Button */}
-                <button className="w-full bg-green-500 hover:bg-green-600 text-white font-black py-5 md:py-6 px-4 md:px-6 rounded-2xl text-lg md:text-2xl shadow-[0_10px_30px_rgba(34,197,94,0.4)] transition-all active:scale-95 animate-pulse uppercase">
+                <a 
+                  href="https://go.perfectpay.com.br/PPU38CQ6BPO"
+                  className="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-black py-5 md:py-6 px-4 md:px-6 rounded-2xl text-lg md:text-2xl shadow-[0_10px_30px_rgba(34,197,94,0.4)] transition-all active:scale-95 animate-pulse uppercase cursor-pointer decoration-0"
+                >
                   QUERO O MÉTODO MENTE MAGRA AGORA!
-                </button>
+                </a>
                 
                 {/* Security Icons */}
                 <div className="flex flex-col md:flex-row justify-center gap-4 text-sm text-gray-500 font-medium pt-2">
@@ -561,9 +583,12 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
              <p className="text-gray-300 leading-relaxed text-sm md:text-base">Usando um método simples, prático e acessível que já ajudou milhares de pessoas a transformar sua relação com a comida.</p>
           </div>
         </div>
-        <button className="w-full md:w-auto md:px-12 bg-green-500 hover:bg-green-600 text-white font-black py-5 md:py-6 rounded-2xl shadow-[0_10px_30px_rgba(34,197,94,0.4)] transition-all active:scale-95 text-lg md:text-xl uppercase animate-pulse">
+        <a 
+          href="https://go.perfectpay.com.br/PPU38CQ6BPO"
+          className="block w-full md:w-auto md:px-12 bg-green-500 hover:bg-green-600 text-center text-white font-black py-5 md:py-6 rounded-2xl shadow-[0_10px_30px_rgba(34,197,94,0.4)] transition-all active:scale-95 text-lg md:text-xl uppercase animate-pulse cursor-pointer decoration-0"
+        >
           QUERO ENTRAR NO MÉTODO MENTE MAGRA AGORA!
-        </button>
+        </a>
       </section>
 
       {/* SECTION 12: FAQ */}

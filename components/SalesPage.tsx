@@ -9,7 +9,6 @@ interface Props {
 
 const SalesPage: React.FC<Props> = ({ userData }) => {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
   
   // --- Countdown Timer State ---
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
@@ -82,54 +81,6 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
   const symptom = userData.physicalDiffs?.[0] ? getOptionLabel(11, userData.physicalDiffs[0]) : 'Fadiga e cansaço constante';
   const time = userData.timeDedication ? getOptionLabel(22, userData.timeDedication) : '15-30 minutos';
 
-  // --- Auto-scroll for testimonials (Improved for Mobile) ---
-  useEffect(() => {
-    const scrollContainer = carouselRef.current;
-    if (!scrollContainer) return;
-
-    let scrollInterval: any;
-    const speed = 1; // Pixels to scroll
-    const intervalTime = 30; // Milliseconds
-
-    const startScrolling = () => {
-      clearInterval(scrollInterval);
-      scrollInterval = setInterval(() => {
-        if (scrollContainer) {
-          // Check if we are near the end to loop back seamlessly
-          // We use a small threshold (2px) to be safe
-          if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth - scrollContainer.clientWidth - 2)) {
-             scrollContainer.scrollLeft = 0;
-          } else {
-             scrollContainer.scrollLeft += speed;
-          }
-        }
-      }, intervalTime);
-    };
-
-    const stopScrolling = () => {
-      clearInterval(scrollInterval);
-    };
-
-    // Start initially
-    startScrolling();
-
-    // Event listeners to pause on interaction
-    scrollContainer.addEventListener('mouseenter', stopScrolling);
-    scrollContainer.addEventListener('mouseleave', startScrolling);
-    scrollContainer.addEventListener('touchstart', stopScrolling, { passive: true });
-    scrollContainer.addEventListener('touchend', () => setTimeout(startScrolling, 1000)); // Delay resume slightly after touch
-
-    return () => {
-      clearInterval(scrollInterval);
-      if (scrollContainer) {
-        scrollContainer.removeEventListener('mouseenter', stopScrolling);
-        scrollContainer.removeEventListener('mouseleave', startScrolling);
-        scrollContainer.removeEventListener('touchstart', stopScrolling);
-        scrollContainer.removeEventListener('touchend', startScrolling);
-      }
-    };
-  }, []);
-
   const detailedTestimonials = [
     {
       img: "https://i.imgur.com/ipOh27y.jpg",
@@ -153,9 +104,27 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
     }
   ];
 
+  // We triplicate the testimonials to ensure smooth infinite scrolling on all screen sizes
+  const marqueeTestimonials = [...detailedTestimonials, ...detailedTestimonials, ...detailedTestimonials, ...detailedTestimonials];
+
   return (
     <div className="w-full max-w-4xl mx-auto space-y-16 pb-24 font-poppins animate-fade-in pt-12">
       
+      {/* Styles for the Marquee Animation */}
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 25s linear infinite;
+          }
+          /* Ensure animation continues even on hover/touch if that's what's requested, 
+             by NOT adding a pause-on-hover rule. */
+        `}
+      </style>
+
       {/* --- STATIC HEADER (TIMER) - Absolute position to be at the top of the page but scroll away --- */}
       <div className="absolute top-0 left-0 w-full bg-red-600 text-white z-[60] py-3 text-center shadow-lg px-2">
         <p className="text-xs md:text-sm font-medium leading-tight">
@@ -163,9 +132,9 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
         </p>
       </div>
 
-      {/* --- POPUP NOTIFICATION - Smaller size but slightly wider for full name --- */}
+      {/* --- POPUP NOTIFICATION - Updated to top-2 and z-[70] --- */}
       <div 
-        className={`fixed top-14 right-2 z-[50] bg-white rounded-lg shadow-xl p-2 flex items-center gap-2 border-l-2 border-green-500 transition-all duration-500 transform w-auto max-w-[240px] ${
+        className={`fixed top-2 right-2 z-[70] bg-white rounded-lg shadow-xl p-2 flex items-center gap-2 border-l-2 border-green-500 transition-all duration-500 transform w-auto max-w-[240px] ${
           showNotification ? 'translate-x-0 opacity-100' : 'translate-x-[200%] opacity-0'
         }`}
       >
@@ -327,80 +296,49 @@ const SalesPage: React.FC<Props> = ({ userData }) => {
         </div>
       </section>
 
-      {/* SECTION 4: Testimonials (REDESIGNED) */}
-      <section className="bg-gray-50 py-12 -mx-4 px-4 md:px-0">
+      {/* SECTION 4: Testimonials (AUTOMATIC INFINITE SCROLL) */}
+      <section className="bg-gray-50 py-12 -mx-4 overflow-hidden">
         <div className="text-center space-y-2 px-4 mb-8">
            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">O que dizem os nossos alunos</h2>
            <p className="text-violet-600 font-bold text-lg">Aprovado por mais de 15 mil alunos</p>
         </div>
         
-        {/* Horizontal Scroll Container */}
-        <div 
-          ref={carouselRef}
-          className="flex gap-4 overflow-x-auto no-scrollbar px-4 pb-4 items-stretch"
-          style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
-        >
-          {detailedTestimonials.map((item, i) => (
-             <div 
-                key={i} 
-                className="w-[280px] shrink-0 bg-white rounded-3xl shadow-md border border-gray-100 flex flex-col overflow-hidden hover:shadow-lg transition-shadow"
-             >
-                {/* Image Container - Square Aspect Ratio */}
-                <div className="relative w-full aspect-square bg-gray-200">
-                   <img 
-                      src={item.img} 
-                      className="w-full h-full object-cover" 
-                      alt={`Aluno ${item.name}`} 
-                      loading="lazy"
-                      decoding="async"
-                   />
-                   <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent"></div>
-                   <p className="absolute bottom-3 left-4 text-white font-bold text-lg drop-shadow-md">{item.name}</p>
-                </div>
-                
-                {/* Text Content */}
-                <div className="p-5 flex-1 flex flex-col justify-between bg-white">
-                  <div>
-                    <div className="flex text-yellow-400 mb-2 space-x-1">
-                      {[...Array(5)].map((_, j) => <Star key={j} fill="currentColor" size={16} />)}
+        {/* Infinite Scroll Container */}
+        <div className="w-full overflow-hidden">
+          <div className="flex w-max gap-4 animate-marquee">
+            {marqueeTestimonials.map((item, i) => (
+               <div 
+                  key={i} 
+                  className="w-[280px] shrink-0 bg-white rounded-3xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+               >
+                  {/* Image Container */}
+                  <div className="relative w-full aspect-square bg-gray-200">
+                     <img 
+                        src={item.img} 
+                        className="w-full h-full object-cover" 
+                        alt={`Aluno ${item.name}`} 
+                        loading="lazy"
+                        decoding="async"
+                     />
+                     <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent"></div>
+                     <p className="absolute bottom-3 left-4 text-white font-bold text-lg drop-shadow-md">{item.name}</p>
+                  </div>
+                  
+                  {/* Text Content */}
+                  <div className="p-5 flex-1 flex flex-col justify-between bg-white">
+                    <div>
+                      <div className="flex text-yellow-400 mb-2 space-x-1">
+                        {[...Array(5)].map((_, j) => <Star key={j} fill="currentColor" size={16} />)}
+                      </div>
+                      <p className="text-gray-600 text-sm leading-relaxed italic">"{item.text}"</p>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed italic">"{item.text}"</p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-[10px] font-bold text-green-600 uppercase tracking-wide">
-                     <ShieldCheck size={12} /> Compra Verificada
-                  </div>
-                </div>
-             </div>
-          ))}
-          {/* Duplicating for seamless loop visual effect */}
-          {detailedTestimonials.map((item, i) => (
-             <div 
-                key={`dup-${i}`} 
-                className="w-[280px] shrink-0 bg-white rounded-3xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
-             >
-                <div className="relative w-full aspect-square bg-gray-200">
-                   <img 
-                      src={item.img} 
-                      className="w-full h-full object-cover" 
-                      alt={`Aluno ${item.name}`} 
-                      loading="lazy"
-                   />
-                   <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent"></div>
-                   <p className="absolute bottom-3 left-4 text-white font-bold text-lg drop-shadow-md">{item.name}</p>
-                </div>
-                <div className="p-5 flex-1 flex flex-col justify-between bg-white">
-                  <div>
-                    <div className="flex text-yellow-400 mb-2 space-x-1">
-                      {[...Array(5)].map((_, j) => <Star key={j} fill="currentColor" size={16} />)}
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-[10px] font-bold text-green-600 uppercase tracking-wide">
+                       <ShieldCheck size={12} /> Compra Verificada
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed italic">"{item.text}"</p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-[10px] font-bold text-green-600 uppercase tracking-wide">
-                     <ShieldCheck size={12} /> Compra Verificada
-                  </div>
-                </div>
-             </div>
-          ))}
+               </div>
+            ))}
+          </div>
         </div>
       </section>
 

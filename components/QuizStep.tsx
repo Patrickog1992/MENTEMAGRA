@@ -142,8 +142,8 @@ const QuizStep: React.FC<Props> = ({ step, userData, onUpdate, onNext }) => {
       <div className="flex flex-col items-center text-center max-w-md mx-auto space-y-6 animate-fade-in">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">{step.title}</h2>
         {step.image && (
-          <div className="relative w-full max-w-[350px] aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg mx-auto">
-             <img src={step.image} alt={step.title} className="object-cover w-full h-full" />
+          <div className="relative w-full max-w-[350px] rounded-xl overflow-hidden shadow-lg mx-auto">
+             <img src={step.image} alt={step.title} className="w-full h-auto" />
           </div>
         )}
         {step.subtitle && <p className="text-gray-600 text-lg leading-relaxed">{step.subtitle}</p>}
